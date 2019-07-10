@@ -76,7 +76,7 @@ public class ApplicantMarketTest {
 
     @Test
     public void testApplicantMarketSimple() {
-        System.out.println("testApplicantMarketTrivialOnePairNotPrefer");
+        System.out.println("testApplicantMarketSimple");
         pL1.add(s1);
         pL1.add(s2);
         pL2.add(s2);
@@ -99,7 +99,7 @@ public class ApplicantMarketTest {
 
     @Test
     public void testApplicantMarketComplex() {
-        System.out.println("testApplicantMarketTrivialOnePairNotPrefer");
+        System.out.println("testApplicantMarketComplex");
         pL1.add(s1); pL1.add(s2); pL1.add(s3);
         pL2.add(s3); pL2.add(s2); pL2.add(s1);
         pL3.add(s3); pL3.add(s1); pL3.add(s2);
@@ -125,7 +125,7 @@ public class ApplicantMarketTest {
 
     @Test
     public void testApplicantMarketComplexWithNoPref() {
-        System.out.println("testApplicantMarketTrivialOnePairNotPrefer");
+        System.out.println("testApplicantMarketComplexWithNoPref");
         pL1.add(s1);
         pL1.add(s2);
         pL2.add(s2);
@@ -148,7 +148,7 @@ public class ApplicantMarketTest {
 
     @Test
     public void testApplicantMarketComplexWithLimitedEmployer() {
-        System.out.println("testApplicantMarketTrivialOnePairNotPrefer");
+        System.out.println("testApplicantMarketComplexWithLimitedEmployer");
         pL1.add(s1);
         pL1.add(s2);
         pL2.add(s2);
@@ -168,7 +168,7 @@ public class ApplicantMarketTest {
 
     @Test
     public void testApplicantMarketComplexWithLimitedStudent() {
-        System.out.println("testApplicantMarketTrivialOnePairNotPrefer");
+        System.out.println("testApplicantMarketComplexWithLimitedStudent");
         pL1.add(s1);
         pL4.add(e1);
         pL4.add(e2);
