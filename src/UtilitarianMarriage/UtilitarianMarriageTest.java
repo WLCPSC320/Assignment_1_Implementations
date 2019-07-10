@@ -78,7 +78,7 @@ public class UtilitarianMarriageTest {
 
     @Test
     public void testFindMatchesAdvanced() {
-        System.out.println("testFindMatchesSimple");
+        System.out.println("testFindMatchesAdvanced");
         pL1.add(10); pL1.add(9); pL1.add(1);
         pL2.add(9); pL2.add(10); pL2.add(4);
         pL3.add(8); pL3.add(3); pL3.add(5);
