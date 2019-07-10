@@ -27,6 +27,7 @@ public class MaximumBipartite {
         solutionSet = new HashSet<>();
         helper2 = new HashSet<>();
         sortEdges();
+        int previousWeight = 99999;
         for (Edge edge : edgeList) {
             Vertex endpoint1 = edge.getVertex().getKey();
             Vertex endpoint2 = edge.getVertex().getValue();
@@ -34,9 +35,65 @@ public class MaximumBipartite {
                 solutionSet.add(edge);
                 helper2.add(endpoint1);
                 helper2.add(endpoint2);
+            } else if (helper2.contains(endpoint1) && previousWeight == edge.getWeight()) { //endpoint 1 is contested
+                Vertex otherContested = findVertex(endpoint1);
+                if(tiebreakMaximumWeight(endpoint2, otherContested, edge.getWeight())) {
+                    removeSolutionEdge(otherContested);
+                    solutionSet.add(edge);
+                    helper2.add(endpoint2);
+                }
+            } else if (helper2.contains(endpoint2) && previousWeight == edge.getWeight()) { //endpoint 2 is contested
+                Vertex otherContested = findVertex(endpoint2);
+                if(tiebreakMaximumWeight(endpoint1, otherContested, edge.getWeight())) {
+                    removeSolutionEdge(otherContested);
+                    solutionSet.add(edge);
+                    helper2.add(endpoint1);
+                }
             }
+            previousWeight = edge.getWeight();
         }
         return solutionSet;
+    }
+
+    // EFFECT: returns the corresponding vertex in the solution set
+    private Vertex findVertex(Vertex v) {
+        Vertex retval = null;
+        for (Edge e : solutionSet) {
+            if (e.hasVertex(v)) {
+                retval = e.getEndpoint(v);
+            }
+        }
+        return retval;
+    }
+
+    // EFFECT: returns true if v1 should be preferred over v2, else false
+    private Boolean tiebreakMaximumWeight(Vertex v1, Vertex v2, int eWeight) {
+        int count1 = 0;
+        int count2 = 0;
+        for (Edge e : v1.getEdgeList()) {
+            if (e.getWeight() == eWeight) {
+                count1++;
+            }
+        }
+        for (Edge e : v2.getEdgeList()) {
+            if (e.getWeight() == eWeight) {
+                count2++;
+            }
+        }
+        return count2 > count1;
+    }
+
+    // EFFECT: removes otherContested's edge from solution set and otherContested from helper2
+    private void removeSolutionEdge(Vertex otherContested) {
+        helper2.remove(otherContested);
+        Edge edge = null;
+        for (Edge e : solutionSet) {
+            if (e.hasVertex(otherContested)) {
+                edge = e;
+                break;
+            }
+        }
+        solutionSet.remove(edge);
     }
 
     // MODIFIES: this

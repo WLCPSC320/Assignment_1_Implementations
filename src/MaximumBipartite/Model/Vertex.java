@@ -1,11 +1,13 @@
 package MaximumBipartite.Model;
 
+import UtilitarianMarriage.Model.Person;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
 
 public class Vertex {
     private String name;
+    private Person p;
     private ArrayList<Edge> edgeList;
     private int degree;
 
@@ -13,6 +15,13 @@ public class Vertex {
         this.name = name;
         edgeList = new ArrayList<>();
         degree = 0;
+    }
+
+    public Vertex(String name, Person p) {
+        this.name = name;
+        edgeList = new ArrayList<>();
+        degree = 0;
+        this.p = p;
     }
 
     // MODIFIES: this, v
@@ -100,8 +109,12 @@ public class Vertex {
     }
 
     // EFFECTS: sets degree
-
     public void setDegree(int degree) {
         this.degree = degree;
+    }
+
+    // EFFECTS: returns p
+    public Person getP() {
+        return p;
     }
 }

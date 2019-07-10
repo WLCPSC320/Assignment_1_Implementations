@@ -3,16 +3,17 @@ package UtilitarianMarriage.Model;
 import java.util.ArrayList;
 
 public class Woman extends Person {
-    private ArrayList<Man> preferenceList; // 0 index is highest preference
+    private ArrayList<Integer> preferenceList; // 0 index is highest preference
     private Man engagedTo;
 
-    public Woman(String name) {
+    public Woman(String name, int index) {
         this.name = name;
         isEngaged = false;
+        this.index = index;
     }
 
     // EFFECTS: returns preferenceList
-    public ArrayList<Man> getPreferenceList() {
+    public ArrayList<Integer> getPreferenceList() {
         return preferenceList;
     }
 
@@ -36,11 +37,13 @@ public class Woman extends Person {
     // REQUIRES: engagedTo != null
     // EFFECT: Returns true if this prefers w1 over engagedTo, else false
     public Boolean prefers(Man m1) {
-        for (Man m2 : preferenceList) {
-            if (m2 == m1) {
+        int i = preferenceList.get(m1.getIndex());
+        int j = preferenceList.get(engagedTo.getIndex());
+        for (Integer utility : preferenceList) {
+            if (utility == i) {
                 return true;
             }
-            if (m2 == engagedTo) {
+            if (utility == j) {
                 return false;
             }
         }
@@ -49,7 +52,7 @@ public class Woman extends Person {
 
     // MODIFIES: this
     // EFFECT: sets preferenceList to pL
-    public void setPrefernceList(ArrayList<Man> pL) {
+    public void setPrefernceList(ArrayList<Integer> pL) {
         preferenceList = pL;
     }
 }
